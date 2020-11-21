@@ -1,24 +1,42 @@
-const { createContainer, asClass, asValue , asFunction} = require('awilix');
+const { 
+    createContainer, 
+    asClass, 
+    asValue , 
+    asFunction} = require('awilix');
 
 //config
 const config = require("../config");
 const app = require(".");
 
 //services
-const { HomeService, UserService, PartyService, CommentService} = require('../services');
+const { 
+    HomeService, 
+    UserService, 
+    PartyService, 
+    CommentService} = require('../services');
 
 //controllers
-const { HomeController } = require('../controllers');
+const { 
+    HomeController, 
+    UserController, 
+    PartyController, 
+    CommentController } = require('../controllers');
 
 //routes
 const Routes =  require('../routes')
 const { HomeRoutes } = require("../routes/index.routes");
 
 //models
-const { User, Party, Comment} = require('../models');
+const { 
+    User, 
+    Party, 
+    Comment} = require('../models');
 
 //repositories
-const {UserRepository, PartyRepository, CommentRepository} = require('../repositories');
+const {
+    UserRepository, 
+    PartyRepository, 
+    CommentRepository} = require('../repositories');
 
 const container = createContainer();
 
@@ -35,7 +53,10 @@ container
     CommentService: asClass(CommentService).singleton(),
 })
 .register({
-    HomeController: asClass(HomeController.bind(HomeController)).singleton()
+    HomeController: asClass(HomeController.bind(HomeController)).singleton(),
+    UserController: asClass(UserController.bind(UserController)).singleton(),
+    PartyController: asClass(PartyController.bind(PartyController)).singleton(),
+    CommentController: asClass(CommentController.bind(CommentController)).singleton()
 })
 .register({
     HomeRoutes: asFunction(HomeRoutes).singleton()
