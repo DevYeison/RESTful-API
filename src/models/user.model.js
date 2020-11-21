@@ -15,14 +15,13 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
-        select: false
+        required: true
     }
 });
 
-UserSchema.methods.toJson = function(){
+UserSchema.methods.toJSON = function(){
     let user = this.toObject();
-    delete user.password;
+   delete user.password;
     return user;
 }
 
@@ -34,7 +33,7 @@ UserSchema.methods.comparePasswords = function(password){
 
 UserSchema.pre("save", async function(next){
     const user = this;
-    if(user.isModified("password")){
+    if(!user.isModified("password")){
         return next();
     }
 
