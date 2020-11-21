@@ -1,10 +1,11 @@
 const { Router } = require('express');
+const { ParseIntMiddleware } = require('../middlewares');
 
 module.exports = function({PartyController}){
     const router = Router();
 
     router.get("/:partyId", PartyController.get);
-    router.get("", PartyController.getAll);
+    router.get("", ParseIntMiddleware,PartyController.getAll);
     router.get("userId/all", PartyController.getUserParties);
     router.post("", PartyController.create);
     router.patch("/:partyId", PartyController.update);
