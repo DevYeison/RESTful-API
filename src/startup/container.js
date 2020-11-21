@@ -23,8 +23,12 @@ const {
     CommentController } = require('../controllers');
 
 //routes
-const Routes =  require('../routes')
-const { HomeRoutes } = require("../routes/index.routes");
+const Routes =  require('../routes');
+const { 
+    HomeRoutes, 
+    UserRoutes, 
+    PartyRoutes, 
+    CommentRoutes } = require("../routes/index.routes");
 
 //models
 const { 
@@ -56,17 +60,20 @@ container
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
     UserController: asClass(UserController.bind(UserController)).singleton(),
     PartyController: asClass(PartyController.bind(PartyController)).singleton(),
-    CommentController: asClass(CommentController.bind(CommentController)).singleton()
+    CommentController: asClass(CommentController.bind(CommentController)).singleton(),
 })
 .register({
-    HomeRoutes: asFunction(HomeRoutes).singleton()
+    HomeRoutes: asFunction(HomeRoutes).singleton(),
+    UserRoutes: asFunction(UserRoutes).singleton(),
+    PartyRoutes: asFunction(PartyRoutes).singleton(),
+    CommentRoutes: asFunction(CommentRoutes).singleton(),
 }).register({
     User: asValue(User),
     Party: asValue(Party),
-    Comment: asValue(Comment)
+    Comment: asValue(Comment),
 }).register({
     UserRepository: asClass(UserRepository).singleton(),
     PartyRepository: asClass(PartyRepository).singleton(),
-    CommentRepository: asClass(CommentRepository).singleton()
+    CommentRepository: asClass(CommentRepository).singleton(),
 });
 module.exports = container;
