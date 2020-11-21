@@ -6,7 +6,7 @@ class AuthService {
         _userService = UserService;
     }
 
-    async signUp(){
+    async signUp(user){
         const { username } = user;
         const userExist = await _userService.getUserByUsername(username);
         if(userExist){
@@ -29,6 +29,7 @@ class AuthService {
         }
         
         const validPassword = userExist.comparePasswords(password);
+
         if(!validPassword){
             const error = new Error();
             error.status = 400;
