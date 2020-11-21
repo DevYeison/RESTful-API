@@ -12,7 +12,8 @@ class PartyController {
         }
 
         async getAll(req,res){
-            const party =  await _partyService.getAll();
+            const { pageSize, pageNum } = req.query;
+            const party =  await _partyService.getAll(pageSize, pageNum);
             return res.send(party);
         }
 
