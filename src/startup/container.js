@@ -13,14 +13,16 @@ const {
     HomeService, 
     UserService, 
     PartyService, 
-    CommentService} = require('../services');
+    CommentService,
+    AuthService} = require('../services');
 
 //controllers
 const { 
     HomeController, 
     UserController, 
     PartyController, 
-    CommentController } = require('../controllers');
+    CommentController,
+    AuthController } = require('../controllers');
 
 //routes
 const Routes =  require('../routes');
@@ -28,7 +30,8 @@ const {
     HomeRoutes, 
     UserRoutes, 
     PartyRoutes, 
-    CommentRoutes } = require("../routes/index.routes");
+    CommentRoutes,
+    AuthRoutes } = require("../routes/index.routes");
 
 //models
 const { 
@@ -55,18 +58,21 @@ container
     UserService: asClass(UserService).singleton(),
     PartyService: asClass(PartyService).singleton(),
     CommentService: asClass(CommentService).singleton(),
+    AuthService: asClass(AuthService).singleton()
 })
 .register({
     HomeController: asClass(HomeController.bind(HomeController)).singleton(),
     UserController: asClass(UserController.bind(UserController)).singleton(),
     PartyController: asClass(PartyController.bind(PartyController)).singleton(),
     CommentController: asClass(CommentController.bind(CommentController)).singleton(),
+    AuthController: asClass(AuthController.bind(AuthController)).singleton()
 })
 .register({
     HomeRoutes: asFunction(HomeRoutes).singleton(),
     UserRoutes: asFunction(UserRoutes).singleton(),
     PartyRoutes: asFunction(PartyRoutes).singleton(),
     CommentRoutes: asFunction(CommentRoutes).singleton(),
+    AuthRoutes: asFunction(AuthRoutes).singleton(),
 }).register({
     User: asValue(User),
     Party: asValue(Party),
