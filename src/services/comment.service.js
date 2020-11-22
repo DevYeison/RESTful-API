@@ -10,7 +10,7 @@ class CommentService extends BaseService{
     }
 
     async getPartyComments(partyId){
-        if(!id){
+        if(!partyId){
             const error = new Error();
             error.status = 400;
             error.message = "party id must be sent";
@@ -32,7 +32,7 @@ class CommentService extends BaseService{
     }
 
     async createComment(comment, partyId){
-        if(!id){
+        if(!partyId){
             const error = new Error();
             error.status = 400;
             error.message = "party id must be sent";
