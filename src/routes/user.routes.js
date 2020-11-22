@@ -9,7 +9,7 @@ module.exports = function({UserController}){
     const router = Router();
 
     router.get("/:userId", UserController.get);
-    router.get("", [ParseIntMiddleware, CacheMiddleware(CACHE_TIME.ONE_HOUR)], UserController.getAll);
+    router.get("", [ParseIntMiddleware], UserController.getAll);
     router.patch("/:userId", [AuthMiddleware], UserController.update);
     router.delete("/:userId", [AuthMiddleware], UserController.delete);
 
