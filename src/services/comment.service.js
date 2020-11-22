@@ -31,7 +31,7 @@ class CommentService extends BaseService{
         return comments;
     }
 
-    async createComment(comment, partyId){
+    async createComment(comment, partyId, userId){
         if(!partyId){
             const error = new Error();
             error.status = 400;
@@ -47,7 +47,7 @@ class CommentService extends BaseService{
             throw error;
         }
         
-        const createdComment = await _commentRepository.create(comment);
+        const createdComment = await _commentRepository.create({...comment, author: userId});
         party.comments.push(createdComment);
 
         return await _partyRepository.update(partyId, {comments: party.comments})
