@@ -50,7 +50,7 @@ class BaseService {
             throw error;
         }
 
-        return await this.repository.delete(id, entity);
+        return await this.repository.delete(id);
     }
 
 }
