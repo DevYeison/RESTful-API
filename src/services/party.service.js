@@ -19,7 +19,7 @@ class PartyService extends BaseService{
     }
 
     async upvoteParty(partyId){
-        if(!boss){
+        if(!partyId){
             const error = new Error();
             error.status = 400;
             error.message = "party id must be sent";
@@ -40,7 +40,7 @@ class PartyService extends BaseService{
     }
 
     async downvoteParty(partyId){
-        if(!boss){
+        if(!partyId){
             const error = new Error();
             error.status = 400;
             error.message = "party id must be sent";
